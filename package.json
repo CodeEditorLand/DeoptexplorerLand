@@ -1485,7 +1485,7 @@
 		"ref-array-di": "1.2.2",
 		"ref-napi": "3.0.3",
 		"ref-struct-di": "1.1.1",
-		"semver": "7.7.0",
+		"semver": "7.7.1",
 		"source-map": "0.7.4",
 		"source-map-support": "0.5.21",
 		"timeago.js": "4.0.2"
@@ -1495,7 +1495,7 @@
 		"@types/benchmark": "2.1.5",
 		"@types/ffi-napi": "4.0.10",
 		"@types/glob": "8.1.0",
-		"@types/node": "22.13.0",
+		"@types/node": "22.13.1",
 		"@types/ref-array-di": "1.2.8",
 		"@types/ref-napi": "3.0.12",
 		"@types/ref-struct-di": "1.1.12",
