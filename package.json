@@ -1,22 +1,39 @@
 {
-	"activationEvents": [
-		"onLanguage:deoptexplorer-v8-map",
-		"onCommand:deoptexplorer.log.opens",
-		"onView:deoptexplorer.pick",
-		"onView:deoptexplorer.logOverviewView",
-		"onView:deoptexplorer.files",
-		"onView:deoptexplorer.maps",
-		"onView:deoptexplorer.profile",
-		"workspaceContains:**/*-v8.log",
-		"onWebviewPanel:deoptexplorer.logOverviewView",
-		"onWebviewPanel:deoptexplorer.reportView",
-		"onWebviewPanel:deoptexplorer.functionView"
-	],
-	"capabilities": {
-		"untrustedWorkspaces": {
-			"description": "The extension will not attempt to use an executable (i.e., 'dumpbin' or 'nm') to resolve native function symbols.",
-			"supported": "limited"
+	"name": "deoptexplorer-vscode",
+	"displayName": "deoptexplorer-vscode",
+	"description": "V8 Deoptimization Explorer Extension for VS Code",
+	"imports": {
+		"#benchmarks": "./src/test/benchmarks.ts",
+		"#chromium/*.js": {
+			"default": "./src/third-party-derived/chromium/*.ts"
+		},
+		"#core/*.js": {
+			"default": "./src/core/*.ts"
+		},
+		"#deoptigate/*.js": {
+			"default": "./src/third-party-derived/deoptigate/*.ts"
+		},
+		"#extension/*.js": {
+			"default": "./src/extension/*.ts"
+		},
+		"#v8/*.js": {
+			"default": "./src/third-party-derived/v8/*.ts"
+		},
+		"#vscode/*.js": {
+			"default": "./src/third-party-derived/vscode/*.ts"
 		}
+	},
+	"main": "./dist/extension.js",
+	"scripts": {
+		"benchmark": "jest --config jest.bench.config.js",
+		"clean": "rimraf dist && rimraf out",
+		"compile": "tsc -b",
+		"compile-log": "node --log-ic --log-maps --prof --log-internal-timer-events --log-source-code D:/dev/TypeScript/built/local/tsc.js -b --force",
+		"syntax": "node scripts/syntax.js",
+		"test-core": "jest --config jest.core.config.js",
+		"webpack": "npm run syntax && webpack --mode development",
+		"webpack-dev": "npm run syntax && webpack --mode development --watch",
+		"webpack-release": "npm run syntax && webpack --mode production"
 	},
 	"contributes": {
 		"colors": [
@@ -1432,6 +1449,19 @@
 			]
 		}
 	},
+	"activationEvents": [
+		"onLanguage:deoptexplorer-v8-map",
+		"onCommand:deoptexplorer.log.opens",
+		"onView:deoptexplorer.pick",
+		"onView:deoptexplorer.logOverviewView",
+		"onView:deoptexplorer.files",
+		"onView:deoptexplorer.maps",
+		"onView:deoptexplorer.profile",
+		"workspaceContains:**/*-v8.log",
+		"onWebviewPanel:deoptexplorer.logOverviewView",
+		"onWebviewPanel:deoptexplorer.reportView",
+		"onWebviewPanel:deoptexplorer.functionView"
+	],
 	"dependencies": {
 		"@esfx/async-deferred": "1.1.0-alpha.202306080253",
 		"@esfx/async-delay": "1.1.0-alpha.202306080253",
@@ -1460,7 +1490,6 @@
 		"source-map-support": "0.5.21",
 		"timeago.js": "4.0.2"
 	},
-	"description": "V8 Deoptimization Explorer Extension for VS Code",
 	"devDependencies": {
 		"@esfx/type-model": "1.0.0",
 		"@types/benchmark": "2.1.5",
@@ -1479,40 +1508,11 @@
 		"rimraf": "6.0.1",
 		"ts-loader": "9.5.2"
 	},
-	"displayName": "deoptexplorer-vscode",
 	"icon": "resources/icon.png",
-	"imports": {
-		"#benchmarks": "./src/test/benchmarks.ts",
-		"#chromium/*.js": {
-			"default": "./src/third-party-derived/chromium/*.ts"
-		},
-		"#core/*.js": {
-			"default": "./src/core/*.ts"
-		},
-		"#deoptigate/*.js": {
-			"default": "./src/third-party-derived/deoptigate/*.ts"
-		},
-		"#extension/*.js": {
-			"default": "./src/extension/*.ts"
-		},
-		"#v8/*.js": {
-			"default": "./src/third-party-derived/v8/*.ts"
-		},
-		"#vscode/*.js": {
-			"default": "./src/third-party-derived/vscode/*.ts"
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"description": "The extension will not attempt to use an executable (i.e., 'dumpbin' or 'nm') to resolve native function symbols.",
+			"supported": "limited"
 		}
-	},
-	"main": "./dist/extension.js",
-	"name": "deoptexplorer-vscode",
-	"scripts": {
-		"benchmark": "jest --config jest.bench.config.js",
-		"clean": "rimraf dist && rimraf out",
-		"compile": "tsc -b",
-		"compile-log": "node --log-ic --log-maps --prof --log-internal-timer-events --log-source-code D:/dev/TypeScript/built/local/tsc.js -b --force",
-		"syntax": "node scripts/syntax.js",
-		"test-core": "jest --config jest.core.config.js",
-		"webpack": "npm run syntax && webpack --mode development",
-		"webpack-dev": "npm run syntax && webpack --mode development --watch",
-		"webpack-release": "npm run syntax && webpack --mode production"
 	}
 }
