@@ -15,7 +15,7 @@
 		"winreg": "1.2.5"
 	},
 	"devDependencies": {
-		"@types/semver": "7.5.8",
+		"@types/semver": "7.7.0",
 		"@types/winreg": "1.2.36"
 	}
 }
