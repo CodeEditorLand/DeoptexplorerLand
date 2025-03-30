@@ -1,12 +1,35 @@
 {
 	"name": "dexnode",
+	"version": "0.0.1",
+	"private": false,
 	"description": "Run NodeJS with logging options needed by Deopt Explorer",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/DeoptexplorerLand#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/DeoptexplorerLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/DeoptexplorerLand.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"bin": {
 		"dexnode": "./bin/dexnode.js"
 	},
 	"scripts": {
 		"clean": "tsc -b --clean",
 		"compile": "tsc -b",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"prestart": "npm run compile",
 		"start": "node bin/dexnode"
 	},
@@ -15,7 +38,11 @@
 		"winreg": "1.2.5"
 	},
 	"devDependencies": {
+		"@playform/build": "0.2.1",
 		"@types/semver": "7.7.0",
 		"@types/winreg": "1.2.36"
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

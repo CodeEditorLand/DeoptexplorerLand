@@ -1,7 +1,29 @@
 {
 	"name": "deoptexplorer-vscode",
 	"displayName": "deoptexplorer-vscode",
+	"version": "0.0.1",
+	"private": false,
 	"description": "V8 Deoptimization Explorer Extension for VS Code",
+	"keywords": [
+		"codeeditorland",
+		"land",
+		"playform"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/DeoptexplorerLand#readme",
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/DeoptexplorerLand/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/DeoptexplorerLand.git"
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"author": {
+		"name": "Source 🖋️ Open 👐🏻",
+		"email": "Source/Open@Editor.Land",
+		"url": "HTTPS://Editor.Land"
+	},
+	"type": "module",
 	"imports": {
 		"#benchmarks": "./src/test/benchmarks.ts",
 		"#chromium/*.js": {
@@ -29,6 +51,7 @@
 		"clean": "rimraf dist && rimraf out",
 		"compile": "tsc -b",
 		"compile-log": "node --log-ic --log-maps --prof --log-internal-timer-events --log-source-code D:/dev/TypeScript/built/local/tsc.js -b --force",
+		"prepublishOnly": "Build 'Source/**/*.ts'",
 		"syntax": "node scripts/syntax.js",
 		"test-core": "jest --config jest.core.config.js",
 		"webpack": "npm run syntax && webpack --mode development",
@@ -1492,6 +1515,7 @@
 	},
 	"devDependencies": {
 		"@esfx/type-model": "1.0.0",
+		"@playform/build": "0.2.1",
 		"@types/benchmark": "2.1.5",
 		"@types/ffi-napi": "4.0.10",
 		"@types/glob": "8.1.0",
@@ -1507,6 +1531,9 @@
 		"plist": "3.1.0",
 		"rimraf": "6.0.1",
 		"ts-loader": "9.5.2"
+	},
+	"publishConfig": {
+		"access": "public"
 	},
 	"icon": "resources/icon.png",
 	"capabilities": {

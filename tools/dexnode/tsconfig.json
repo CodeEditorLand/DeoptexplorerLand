@@ -1,15 +1,22 @@
 {
 	"compilerOptions": {
-		"module": "nodenext",
-		"target": "es2018",
-		"lib": ["esnext"],
-		"outDir": "dist",
-		"rootDir": "src",
-		"sourceMap": true,
+		"baseUrl": "./",
+		"esModuleInterop": true,
 		"inlineSources": true,
-		"strict": true,
+		"lib": [
+			"esnext"
+		],
+		"module": "nodenext",
+		"outDir": "Target",
+		"rootDir": "src",
 		"skipLibCheck": true,
-		"esModuleInterop": true
+		"sourceMap": true,
+		"strict": true,
+		"target": "es2018"
 	},
-	"include": ["src"]
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src",
+		"src"
+	]
 }

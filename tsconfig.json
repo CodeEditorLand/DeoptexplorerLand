@@ -1,19 +1,29 @@
 {
 	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./",
+		"esModuleInterop": true,
+		"experimentalDecorators": true,
+		"lib": [
+			"esnext"
+		],
 		"module": "nodenext",
-		"target": "es2018",
-		"lib": ["esnext"],
 		"moduleResolution": "nodenext",
-		"outDir": "out",
+		"outDir": "Target",
+		"removeComments": true,
 		"rootDir": "src",
+		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"skipLibCheck": true,
-		"removeComments": true,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true
+		"target": "es2018"
 	},
-	"include": ["src"],
-	"exclude": ["node_modules", ".vscode-test"]
+	"exclude": [
+		"node_modules",
+		".vscode-test"
+	],
+	"extends": "@playform/build/tsconfig",
+	"include": [
+		"src",
+		"src"
+	]
 }
