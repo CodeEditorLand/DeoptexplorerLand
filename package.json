@@ -1515,7 +1515,7 @@
 	},
 	"devDependencies": {
 		"@esfx/type-model": "1.0.0",
-		"@playform/build": "0.2.1",
+		"@playform/build": "0.2.2",
 		"@types/benchmark": "2.1.5",
 		"@types/ffi-napi": "4.0.10",
 		"@types/glob": "8.1.0",
