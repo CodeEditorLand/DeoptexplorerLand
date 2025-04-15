@@ -1519,7 +1519,7 @@
 		"@types/benchmark": "2.1.5",
 		"@types/ffi-napi": "4.0.10",
 		"@types/glob": "8.1.0",
-		"@types/node": "22.14.0",
+		"@types/node": "22.14.1",
 		"@types/ref-array-di": "1.2.8",
 		"@types/ref-napi": "3.0.12",
 		"@types/ref-struct-di": "1.1.12",
