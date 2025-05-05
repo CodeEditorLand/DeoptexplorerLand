@@ -61,95 +61,79 @@ const path = require("path");
  * @param {(pattern: string) => string} replacer
  */
 function updateGrammarRule(rule, replacer) {
-	if ("match" in rule) {
-		rule.match = replacer(rule.match);
-	} else if ("begin" in rule) {
-		rule.begin = replacer(rule.begin);
-		rule.end = replacer(rule.end);
-		updatePatterns(rule.patterns, replacer);
-		updateRepository(rule.repository, replacer);
-	} else if ("patterns" in rule) {
-		updatePatterns(rule.patterns, replacer);
-	}
+    if ("match" in rule) {
+        rule.match = replacer(rule.match);
+    }
+    else if ("begin" in rule) {
+        rule.begin = replacer(rule.begin);
+        rule.end = replacer(rule.end);
+        updatePatterns(rule.patterns, replacer);
+        updateRepository(rule.repository, replacer);
+    }
+    else if ("patterns" in rule) {
+        updatePatterns(rule.patterns, replacer);
+    }
 }
 
 /**
- * @param {AnyTmGrammarRule[]} patterns
+ * @param {AnyTmGrammarRule[]} patterns 
  * @param {(pattern: string) => string} replacer
  */
 function updatePatterns(patterns, replacer) {
-	if (patterns) {
-		for (const pattern of patterns) {
-			updateGrammarRule(pattern, replacer);
-		}
-	}
+    if (patterns) {
+        for (const pattern of patterns) {
+            updateGrammarRule(pattern, replacer);
+        }
+    }
 }
 
 /**
- * @param {Record<string, AnyTmGrammarRule>} repository
+ * @param {Record<string, AnyTmGrammarRule>} repository 
  * @param {(pattern: string) => string} replacer
  */
 function updateRepository(repository, replacer) {
-	for (const key in repository) {
-		updateGrammarRule(repository[key], replacer);
-	}
+    for (const key in repository) {
+        updateGrammarRule(repository[key], replacer);
+    }
 }
 
 /**
- * @param {TmGrammar} grammar
+ * @param {TmGrammar} grammar 
  * @param {(pattern: string) => string} replacer
  */
 function updateGrammarVariables(grammar, replacer) {
-	updatePatterns(grammar.patterns, replacer);
-	updateRepository(grammar.repository, replacer);
+    updatePatterns(grammar.patterns, replacer);
+    updateRepository(grammar.repository, replacer);
 }
 
 /**
- * @param {string} pattern
- * @param {VariableReplacer[]} replacers
+ * @param {string} pattern 
+ * @param {VariableReplacer[]} replacers 
  */
 function replacePatternVariables(pattern, replacers) {
-	let result = pattern;
-	for (const [variableName, value] of replacers) {
-		result = result.replace(variableName, value);
-	}
-	return result;
+    let result = pattern;
+    for (const [variableName, value] of replacers) {
+        result = result.replace(variableName, value);
+    }
+    return result;
 }
 
 /**
- * @param {TmGrammar} grammar
+ * @param {TmGrammar} grammar 
  */
 function replaceVariables(grammar) {
-	const variables = grammar.variables;
-	delete grammar.variables;
-	/** @type {VariableReplacer[]} */
-	const replacers = [];
-	for (const variableName in variables) {
-		const pattern = replacePatternVariables(
-			variables[variableName],
-			replacers,
-		);
-		replacers.push([new RegExp(`{{${variableName}}}`, "gim"), pattern]);
-	}
-	return updateGrammarVariables(grammar, (pattern) =>
-		replacePatternVariables(pattern, replacers),
-	);
+    const variables = grammar.variables;
+    delete grammar.variables;
+    /** @type {VariableReplacer[]} */
+    const replacers = [];
+    for (const variableName in variables) {
+        const pattern = replacePatternVariables(variables[variableName], replacers);
+        replacers.push([new RegExp(`{{${variableName}}}`, "gim"), pattern]);
+    }
+    return updateGrammarVariables(grammar, pattern => replacePatternVariables(pattern, replacers));
 }
 
-const grammar = /** @type {TmGrammar} */ (
-	yaml.load(
-		fs.readFileSync(
-			path.join(__dirname, "../src/syntax/v8-map.yaml"),
-			"utf8",
-		),
-	)
-);
+const grammar = /** @type {TmGrammar} */(yaml.load(fs.readFileSync(path.join(__dirname, "../src/syntax/v8-map.yaml"), "utf8")));
 replaceVariables(grammar);
-try {
-	fs.mkdirSync(path.join(__dirname, "../dist"), { recursive: true });
-} catch {}
-fs.writeFileSync(
-	path.join(__dirname, "../dist/v8-map.tmLanguage"),
-	plist.build(grammar),
-	{ encoding: "utf8" },
-);
+try { fs.mkdirSync(path.join(__dirname, "../dist"), { recursive: true }) } catch { }
+fs.writeFileSync(path.join(__dirname, "../dist/v8-map.tmLanguage"), plist.build(grammar), { encoding: "utf8" });

@@ -1,48 +1,32 @@
 {
-	"name": "dexnode",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Run NodeJS with logging options needed by Deopt Explorer",
-	"keywords": [
-		"codeeditorland",
-		"land",
-		"playform"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/DeoptexplorerLand#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/DeoptexplorerLand/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/DeoptexplorerLand.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Source 🖋️ Open 👐🏻",
-		"email": "Source/Open@Editor.Land",
-		"url": "HTTPS://Editor.Land"
-	},
-	"type": "module",
-	"bin": {
-		"dexnode": "./bin/dexnode.js"
-	},
-	"scripts": {
-		"clean": "tsc -b --clean",
-		"compile": "tsc -b",
-		"prepublishOnly": "Build 'Source/**/*.ts'",
-		"prestart": "npm run compile",
-		"start": "node bin/dexnode"
-	},
-	"dependencies": {
-		"semver": "7.7.1",
-		"winreg": "1.2.5"
-	},
-	"devDependencies": {
-		"@playform/build": "0.2.3",
-		"@types/semver": "7.7.0",
-		"@types/winreg": "1.2.36"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "dexnode",
+  "version": "1.2.2",
+  "description": "Run NodeJS with logging options needed by Deopt Explorer",
+  "type": "module",
+  "bin": {
+    "dexnode": "./bin/dexnode.js"
+  },
+  "keywords": [
+    "deopt",
+    "explorer",
+    "nodejs",
+    "v8"
+  ],
+  "author": "Ron Buckton <ron.buckton@microsoft.com>",
+  "license": "MIT",
+  "dependencies": {
+    "semver": "^7.3.8",
+    "winreg": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.3.13",
+    "@types/winreg": "^1.2.32",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "compile": "tsc -b",
+    "clean": "tsc -b --clean",
+    "prestart": "npm run compile",
+    "start": "node bin/dexnode"
+  }
 }
