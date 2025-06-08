@@ -15,13 +15,13 @@
   "author": "Ron Buckton <ron.buckton@microsoft.com>",
   "license": "MIT",
   "dependencies": {
-    "semver": "^7.3.8",
-    "winreg": "^1.2.4"
+    "semver": "^7.7.2",
+    "winreg": "^1.2.5"
   },
   "devDependencies": {
-    "@types/semver": "^7.3.13",
-    "@types/winreg": "^1.2.32",
-    "typescript": "^4.9.5"
+    "@types/semver": "^7.7.0",
+    "@types/winreg": "^1.2.36",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "compile": "tsc -b",
